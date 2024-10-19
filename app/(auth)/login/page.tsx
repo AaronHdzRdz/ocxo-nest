@@ -15,9 +15,9 @@ export default function LoginPage() {
     // Enviar solicitud POST a la API de autenticación
     const { data } = await axios.post("http://127.0.0.1:4000/auth/login", {
       ...authData
+    },{
+      withCredentials: true
     });
-    console.log(authData.userPassword)
-    console.log(authData.userEmail)
     return;
   };
 
