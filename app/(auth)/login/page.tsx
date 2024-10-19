@@ -1,23 +1,35 @@
 "use client";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Spinner } from "@nextui-org/react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const [submitting, setSumitting] = useState(false)
+  const router = useRouter()
   // Maneja el envío del formulario
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setSumitting(true);
     e.preventDefault();
     const formData = new FormData(e.currentTarget); // Usar e.currentTarget en lugar de e.target
     let authData: any = {};
     authData.userEmail = formData.get('userEmail');
     authData.userPassword = formData.get('userPassword');
-    // Enviar solicitud POST a la API de autenticación
-    const { data } = await axios.post("http://127.0.0.1:4000/auth/login", {
-      ...authData
-    },{
-      withCredentials: true
-    });
+    try {
+      // Enviar solicitud POST a la API de autenticación
+      const response = await axios.post("http://127.0.0.1:4000/auth/login", {
+        ...authData
+      }, {
+        withCredentials: true
+      });
+      if (response.status === 201) {
+        router.push("/dashboard");
+      }
+      setSumitting(false);
+    } catch (e) {
+      setSumitting(false);
+    }
     return;
   };
 
@@ -32,7 +44,10 @@ export default function LoginPage() {
           <Input label="Contraseña" type="password" name="userPassword" isRequired={true} size="sm" />
         </div>
         <div className="flex flex-col">
-          <Button type="submit" className="w-full bg-[#FBB110] hover:bg-[#E6A100] text-black">Iniciar sesión</Button>
+          <Button
+            type="submit"
+            className="w-full bg-[#FBB110] hover:bg-[#E6A100] text-black"
+            disabled={submitting}>{submitting ? <Spinner size="md" /> : "Iniciar Sesion"}</Button>
         </div>
         <p className="text-center">
           ¿No tienes una cuenta? <Link href="/signup" className="text-[#E70020] hover:text-gray-400">Regístrate</Link>
