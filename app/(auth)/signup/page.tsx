@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SignupPage() {
   return (
-    <div>
+    <div className="p-8">
       <p className="text-2xl my-4 text-center text-black font-bold mx-4">
         Registro<span></span>
       </p>

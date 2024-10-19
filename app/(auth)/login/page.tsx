@@ -22,20 +22,23 @@ export default function LoginPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <p className="text-2xl my-4 text-center text-black font-bold mx-4">
-        Inicio de Sesión<span></span>
-      </p>
-      <div className="flex flex-col gap-2 my-2">
-        <Input label="Correo Electrónico" name="userEmail" type="email" isRequired={true} size="sm" />
-        <Input label="Contraseña" type="password" name="userPassword" isRequired={true} size="sm" />
-      </div>
-      <div className="flex flex-col">
-        <Button type="submit" className="w-full bg-[#FBB110] hover:bg-[#E6A100] text-black">Iniciar sesión</Button>
-      </div>
-      <p className="text-center">
-        ¿No tienes una cuenta? <Link href="/signup" className="text-[#E70020] hover:text-gray-400">Regístrate</Link>
-      </p>
-    </form>
+    <div className="p-8">
+      <form onSubmit={handleSubmit}>
+        <p className="text-2xl my-4 text-center text-black font-bold mx-4">
+          Inicio de Sesión<span></span>
+        </p>
+        <div className="flex flex-col gap-2 my-2">
+          <Input label="Correo Electrónico" name="userEmail" type="email" isRequired={true} size="sm" />
+          <Input label="Contraseña" type="password" name="userPassword" isRequired={true} size="sm" />
+        </div>
+        <div className="flex flex-col">
+          <Button type="submit" className="w-full bg-[#FBB110] hover:bg-[#E6A100] text-black">Iniciar sesión</Button>
+        </div>
+        <p className="text-center">
+          ¿No tienes una cuenta? <Link href="/signup" className="text-[#E70020] hover:text-gray-400">Regístrate</Link>
+        </p>
+      </form>
+    </div>
+
   );
 }
