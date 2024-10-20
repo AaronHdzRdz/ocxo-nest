@@ -3,10 +3,10 @@ import Sidebar from "./_components/_sidebar/Sidebar";
 
 export default function LayoutDashboard({
     children,
-    cout,
+    locations,
 }: Readonly<{
     children: React.ReactNode;
-    cout: React.ReactNode;
+    locations: React.ReactNode;
 }>) {
     return (
         <div className="">
@@ -14,7 +14,7 @@ export default function LayoutDashboard({
             <div className="flex flex-rew items-center bg-[f0f0f0]">
                 <Sidebar />
                 {children}
-                {cout}
+                {locations}
             </div>
 
         </div>

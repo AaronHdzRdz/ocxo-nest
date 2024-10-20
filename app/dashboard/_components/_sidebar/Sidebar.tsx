@@ -3,7 +3,7 @@ import NavItem from './NavIterm';
 
 export default function Sidebar() {
     return (
-        <nav className="w-[10vw] h-[90vh] flex flex-col items-center py-5 bg-[#FEDCE1] justify-center gap-10">
+        <nav className="w-1/12 h-[90vh] flex flex-col items-center py-5 bg-[#FEDCE1] justify-center gap-10">
             <NavItem icon={<LuStore className='text-4xl' />} path="/dashboard" />
             <NavItem icon={<LuTruck className='text-4xl' />} path="/dashboard/providers" />
             <NavItem icon={<LuWheat className='text-4xl' />} path="/dashboard/products" />
