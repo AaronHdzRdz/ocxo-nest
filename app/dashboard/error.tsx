@@ -1,4 +1,4 @@
 'use client';
-export default function ErrorMainDashboard (){
-    return 'Ocurrio un error'
+export default function ErrorMainDashboard() {
+    return 'Ocurrió un error'
 }

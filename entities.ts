@@ -17,8 +17,8 @@ export interface Employee {
     amployeePhoto?: string;
     location?: Location;
     user?: any;
-} 
-export interface Manager{
+}
+export interface Manager {
     managerId: string;
     managerName: string;
     managerSalary: number;
