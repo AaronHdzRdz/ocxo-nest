@@ -1,15 +1,14 @@
 "use client";
-import { Button, Input, Spinner } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { API_URL } from "constants/constants";
 
 export default function LoginPage() {
   const [submitting, setSumitting] = useState(false)
   const router = useRouter()
-  // Maneja el envío del formulario
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     setSumitting(true);
     e.preventDefault();
     const formData = new FormData(e.currentTarget); // Usar e.currentTarget en lugar de e.target
@@ -17,11 +16,10 @@ export default function LoginPage() {
     authData.userEmail = formData.get('userEmail');
     authData.userPassword = formData.get('userPassword');
     try {
-      // Enviar solicitud POST a la API de autenticación
-      const response = await axios.post("http://127.0.0.1:4000/auth/login", {
-        ...authData
-      }, {
-        withCredentials: true
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        body: JSON.stringify(authData),
+        credentials: 'include',
       });
       if (response.status === 201) {
         router.push("/dashboard");
@@ -45,9 +43,11 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-col">
           <Button
+            color="primary"
             type="submit"
-            className="w-full bg-[#FBB110] hover:bg-[#E6A100] text-black"
-            disabled={submitting}>{submitting ? <Spinner size="md" /> : "Iniciar Sesion"}</Button>
+            disabled={submitting}>
+            {submitting ? "Enviando..." : "Iniciar Sesión"}
+          </Button>
         </div>
         <p className="text-center">
           ¿No tienes una cuenta? <Link href="/signup" className="text-[#E70020] hover:text-gray-400">Regístrate</Link>

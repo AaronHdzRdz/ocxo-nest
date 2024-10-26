@@ -1,32 +1,33 @@
+import { Employee } from "entities";
+import { API_URL } from "constants/constants";
 import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
-import axios from "axios";
-import { API_URL, TOKEN_NAME } from "constants/constants";
-import { Employee, } from "entities";
-import { cookies } from "next/headers";
+import { authHeaders } from "helpers/authHeaders";
 
 export default async function EmployeesLocation({ store }: { store: string | string[] | undefined }) {
-    const token = cookies().get(TOKEN_NAME)?.value; // Asegúrate de obtener el valor del token
-    const { data } = await axios.get<Employee[]>(`${API_URL}/employees/location/${store}`, {
+    if (!store) return "No hay empleados";
+    const response = await fetch(`${API_URL}/employees/location/${store}`, {
+        method: "GET",
         headers: {
-            Authorization: `Bearer ${token}`
+            ...authHeaders()
+        },
+        next: {
+            tags: ["dashboard:locations:employeees"]
         }
     });
-
-    if (!data) return null;
-
-    return data.map((employee) => {
-        const fullname = employee.employeeName + ' ' + employee.employeeLastName;
+    const data: Employee[] = await response.json()
+    return data?.map((employee: Employee) => {
+        const fullName = employee.employeeName + " " + employee.employeeLastName
         return (
             <Card className="mx-10 my-10">
                 <CardHeader>
-                    <p className="w-full">Nombre: <b>{fullname}</b> </p>
+                    <p className="w-full">Nombre: <b>{fullName}</b></p>
                 </CardHeader>
-                <Divider/>
+                <Divider />
                 <CardBody>
-                    <p className="w-full">Email: <b>{employee.employeeEmail}</b> </p>
-                    <p className="w-full">Teléfono: <b>{employee.employeePhoneNumber}</b> </p>
-                    <p className="w-full">ID: <b>{employee.employeeId}</b> </p>
+                    <p className="w-full">Email: <b>{employee.employeeEmail}</b></p>
+                    <p className="w-full">Teléfono: <b>{employee.employeePhoneNumber}</b></p>
                 </CardBody>
             </Card>)
-    })
+    });
+
 }

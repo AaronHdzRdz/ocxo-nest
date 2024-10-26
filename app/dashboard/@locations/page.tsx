@@ -1,18 +1,28 @@
-import axios from 'axios'
-import { Location } from 'entities';
-import SelectLocations from './_component/selectLocations';
-import LocationCard from './_component/LocationCard';
-import { API_URL } from 'constants/constants';
-import FormNewLocation from './_component/FormNewLocation';
-import { authHeaders } from 'helpers/authHeaders';
-import DeleteLocationButton from './_component/DeleteLocationButton';
+import { Location } from "entities";
+import { API_URL } from "constants/constants";
+import LocationCard from "./_component/LocationCard";
+import FormNewLocation from "./_component/FormNewLocation";
+import DeleteLocationButton from "./_component/DeleteLocationButton";
+import { authHeaders } from "helpers/authHeaders";
+import SelectLocations from "./_component/selectLocations";
 
-const LocationsPage = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
-    let { data } = await axios.get<Location[]>(`${API_URL}/locations`, {
-        headers: {
-            ...authHeaders
-        }
-    });
+const LocationsPage = async ({
+    searchParams,
+}: {
+    searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+    const response = await fetch(
+        `${API_URL}/locations`,
+        {
+            headers: {
+                ...authHeaders()
+            },
+            next: {
+                tags: ["dashboard:locations"]
+            }
+        },
+    );
+    let data: Location[] = await response.json()
     data = [
         {
             locationId: 0,
@@ -22,14 +32,14 @@ const LocationsPage = async ({ searchParams }: { searchParams: { [key: string]: 
             employees: []
         },
         ...data,
-    ]
+    ];
     return (
         <div className="w-7/12">
-            <div className='w-full flex flex-col items-center h-[90vh]'>
-                <div className='w-1/2 my-8'>
-                    <SelectLocations locations={data} store={searchParams?.store} />
+            <div className="w-full flex flex-col items-center h-[90vh] bg-yellow-50">
+                <div className="w-1/2 my-10">
+                    <SelectLocations locations={data} store={searchParams.store} />
                 </div>
-                <div className='w-8/12'>
+                <div className="w-8/12">
                     <LocationCard store={searchParams.store} />
                 </div>
                 <div className="w-6/12">
@@ -38,7 +48,7 @@ const LocationsPage = async ({ searchParams }: { searchParams: { [key: string]: 
                 <DeleteLocationButton store={searchParams.store} />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LocationsPage
+export default LocationsPage;
