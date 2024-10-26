@@ -1,4 +1,5 @@
-const ManagerPage = () => {
-    return null
+const ManagersPage = async () => {
+    return null;
 }
-export default ManagerPage
+
+export default ManagersPage;

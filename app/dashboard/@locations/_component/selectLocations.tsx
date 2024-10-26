@@ -3,7 +3,7 @@ import { Location } from "entities";
 import { Select, SelectItem } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-export default function SelectLocations({
+export default function SelectLocation({
     locations,
     store,
 }: {
