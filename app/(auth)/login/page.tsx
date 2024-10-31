@@ -11,7 +11,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: any) => {
     setSumitting(true);
     e.preventDefault();
-    const formData = new FormData(e.currentTarget); // Usar e.currentTarget en lugar de e.target
+    const formData = new FormData(e.currentTarget);
     let authData: any = {};
     authData.userEmail = formData.get('userEmail');
     authData.userPassword = formData.get('userPassword');

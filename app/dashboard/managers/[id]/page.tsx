@@ -2,6 +2,7 @@ import { API_URL } from "constants/constants";
 import { Manager } from "entities";
 import { authHeaders } from "helpers/authHeaders";
 import ManagerCard from "./_components/ManagerCard";
+import DeleteManagerButton from "./_components/DeleteManagerButton";
 export default async function ManagerPage({
   params,
 }: {

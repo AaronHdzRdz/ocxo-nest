@@ -11,6 +11,5 @@ export default async function createManager(managerId: string, formData: FormDat
       ...authHeaders(),
     },
   })
-  console.log(response.status);
-  revalidateTag("dashboard:managers")
+  if (response.status === 200) revalidateTag("dashboard:managers")
 }
