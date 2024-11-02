@@ -18,7 +18,7 @@ export default async function FormUpdateManager({
   const stores = await responseStores.json();
   return (
     <form action={updateManagerWithId} className="bg-orange-400 rounded-md flex flex-col flex-grow-0 gap-2">
-      <h1> Actualizar Manager </h1>
+      <h1 className="text-2xl text-white font-semibold text-center"> Actualizar Manager </h1>
       <Input
         required={true}
         isRequired
