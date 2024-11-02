@@ -5,6 +5,8 @@ import { authHeaders } from "helpers/authHeaders";
 import Link from "next/link";
 import ProviderCard from "./_components/ProviderCard";
 import { LuPlus } from "react-icons/lu";
+import CreateProvider from "./_components/CreateProvider";
+import FormCreateProvider from "./_components/FormCreateProvider";
 const ProviderPage = async () => {
   const response = await fetch(`${API_URL}/providers`, {
     headers: {
@@ -15,9 +17,9 @@ const ProviderPage = async () => {
 
   return (
     <div className="flex flex-grow-0 flex-col items-end w-full px-10 pt-10 h-[90vh]">
-      <Button className="w-fit" color="primary">
-    <LuPlus size="20"/>
-      </Button>
+      <CreateProvider>
+        <FormCreateProvider />
+      </CreateProvider>
       <div className="flex flex-wrap w-full py-20 flex-grow-0 gap-14">
         {providers.map((provider: Provider) => (
           <Link
