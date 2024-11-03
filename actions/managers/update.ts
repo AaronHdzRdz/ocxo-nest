@@ -5,7 +5,7 @@ import { authHeaders } from "helpers/authHeaders";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async function createManager(managerId: string, formData: FormData) {
+export default async function updateManager(managerId: string, formData: FormData) {
   let manager: any = {};
   for (const key of formData.keys()) {
     manager[key] = formData.get(key);
