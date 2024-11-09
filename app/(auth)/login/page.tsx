@@ -6,29 +6,38 @@ import { useRouter } from "next/navigation";
 import { API_URL } from "constants/constants";
 
 export default function LoginPage() {
-  const [submitting, setSumitting] = useState(false)
-  const router = useRouter()
+  const [submitting, setSubmitting] = useState(false);
+  const router = useRouter();
+  
   const handleSubmit = async (e: any) => {
-    setSumitting(true);
+    setSubmitting(true);
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     let authData: any = {};
     authData.userEmail = formData.get('userEmail');
     authData.userPassword = formData.get('userPassword');
+    
     try {
       const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         body: JSON.stringify(authData),
         credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+      
       if (response.status === 201) {
         router.push("/dashboard");
+      } else {
+        console.error("Error en la autenticación:", response.statusText);
       }
-      setSumitting(false);
+      
+      setSubmitting(false);
     } catch (e) {
-      setSumitting(false);
+      console.error("Error en la solicitud:", e);
+      setSubmitting(false);
     }
-    return;
   };
 
   return (
@@ -54,6 +63,5 @@ export default function LoginPage() {
         </p>
       </form>
     </div>
-
   );
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { TOKEN_NAME } from "../ocso-proyect/src/auth/constans/jwt.constans";
+import { TOKEN_NAME } from 'constants/constants';
 
 export default function MiddleWare(req: NextRequest) {
     const token = req.cookies.get(TOKEN_NAME)?.value;
