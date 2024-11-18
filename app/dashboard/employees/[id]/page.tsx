@@ -18,7 +18,7 @@ export default async function EmployeePage({
   return (
     <div className="w-full h-[90vh] flex flex-row items-center justify-center">
     <EmployeeDataCard employee={employee}/>
-      <FormUpdateEmployee employee={employee} />
+    <FormUpdateEmployee employee={employee} />
     </div>
   );
 }

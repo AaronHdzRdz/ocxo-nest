@@ -8,7 +8,6 @@ export default async function registerEmployee(employeeId: string, formData: For
   data.userPassword = formData.get("userPassword")
   data.userRoles = "Employee"
 
-  console.log(data);
   const response = await fetch(`${API_URL}/auth/register/${employeeId}?role=employee`, {
     method: "POST",
     headers: {
@@ -17,5 +16,4 @@ export default async function registerEmployee(employeeId: string, formData: For
     },
     body: JSON.stringify(data)
   })
-  console.log(await response.json());
 }

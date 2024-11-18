@@ -45,6 +45,7 @@ export interface Product {
 }
 
 export interface User{
+  userId: string;
   userEmail: string;
   userPassword: string;
   userRoles: string[];
