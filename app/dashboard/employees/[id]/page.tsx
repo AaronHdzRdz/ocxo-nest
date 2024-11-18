@@ -17,7 +17,7 @@ export default async function EmployeePage({
   const employee: Employee = await responseEmployee.json();
   return (
     <div className="w-full h-[90vh] flex flex-row items-center justify-center">
-      <EmployeeDataCard employee={employee}/>
+    <EmployeeDataCard employee={employee}/>
       <FormUpdateEmployee employee={employee} />
     </div>
   );

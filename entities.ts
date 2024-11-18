@@ -9,23 +9,23 @@ export interface Location {
 }
 
 export interface Employee {
-    employeeId: string;
-    employeeName: string;
-    employeeLastName: string;
-    employeePhoneNumber: string;
-    employeeEmail: string;
-    employeePhoto?: string;
-    location?: Location;
-    user?: any;
+  employeeId: string;
+  employeeName: string;
+  employeeLastName: string;
+  employeePhoneNumber: string;
+  employeeEmail: string;
+  employeePhoto?: string;
+  location?: Location;
+  user?: User;
 }
 export interface Manager {
-    managerId: string;
-    managerName: string;
-    managerSalary: number;
-    managerEmail: string;
-    managerPhoneNumber: string;
-    location: Location;
-    user: any;
+  managerId: string;
+  managerFullName: string;
+  managerSalary: number;
+  managerEmail: string;
+  managerPhoneNumber: string;
+  location: Location;
+  user: User;
 }
 
 export interface Provider {
@@ -42,4 +42,12 @@ export interface Product {
   price: number;
   countSeal: number;
   provider: Provider
+}
+
+export interface User{
+  userEmail: string;
+  userPassword: string;
+  userRoles: string[];
+  manager: Manager;
+  employee: Employee;
 }
