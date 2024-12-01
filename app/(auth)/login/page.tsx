@@ -43,7 +43,7 @@ export default function LoginPage() {
   return (
     <div className="p-8">
       <form onSubmit={handleSubmit}>
-        <p className="text-2xl my-4 text-center text-black font-bold mx-4">
+        <p className="text-2xl font-semibold text-gray-900">
           Inicio de Sesión<span></span>
         </p>
         <div className="flex flex-col gap-2 my-2">
@@ -58,9 +58,15 @@ export default function LoginPage() {
             {submitting ? "Enviando..." : "Iniciar Sesión"}
           </Button>
         </div>
-        <p className="text-center">
-          ¿No tienes una cuenta? <Link href="/signup" className="text-[#E70020] hover:text-gray-400">Regístrate</Link>
-        </p>
+        <div className="text-center text-sm">
+            <span className="text-gray-600">¿No tienes una cuenta? </span>
+            <Link 
+              href="/signup" 
+              className="text-[#007BFF] hover:text-[#0056b3] font-medium"
+            >
+              Regístrate
+            </Link>
+          </div>
       </form>
     </div>
   );
